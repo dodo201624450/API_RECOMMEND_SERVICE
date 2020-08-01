@@ -1,0 +1,37 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block title %}
+Explain Project
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">Panel Title</h3>
+            </div>
+            <ul class="list-group">
+                <li class="list-group-item"><a href="{% url 'explain:project' %}">과제 소개</a></li>
+                <li class="list-group-item"><a href="{% url 'explain:requirement' %}">요구 분석</a></li>
+                <li class="list-group-item"><a href="{% url 'explain:measures' %}">제약 대책</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9 typograhpy">
+        <h2>신약개발 후보물질 추천을 위한 머신러닝 기법 설계</h2>
+        <h3>대상 문제 및 요구조건 분석</h3>
+        <h4>대상 문제</h4>
+        <p>
+            aptamer 서열에서 문제를 접근하여, 단백질-aptamer 결합 여부를 결정할 수 있는 classifier을 학습시키고,
+            이를 적절히 활용하여 target-protein이 주어질 때 유력한 aptamer을 추천하는 프로그램을 개발한다.
+        </p>
+        <h4>요구 조건</h4>
+        <ul>
+            <li>classifier은 가변길이의 단백질과 aptamer 사이의 결합 생성 유무를 유추할 수 있다.</li>
+            <li>가변길이의 단백질이 주어지면 classifier을 통해 aptamer 서열을 추천할 수 있다.</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}
