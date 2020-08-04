@@ -10,7 +10,7 @@ Explain Project
     <div class="col-md-3">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <h3 class="panel-title">Panel Title</h3>
+                <h3 class="panel-title">Project 소개</h3>
             </div>
             <ul class="list-group">
                 <li class="list-group-item"><a href="{% url 'explain:project' %}">과제 소개</a></li>
@@ -21,12 +21,20 @@ Explain Project
     </div>
     <div class="col-md-9 typograhpy">
         <h2>신약개발 후보물질 추천을 위한 머신러닝 기법 설계</h2>
+        <br>
         <h3>현실적 제약 사항 분석 결과 및 대책</h3>
+        <br>
         <h4>현실적 제약 사항</h4>
         <ul>
-            <li>단백질- aptamer 결합과 aptamer-protein에 관한 배경지식이 부족하기 때문에 올바른 classifier의 학습이 어려울 수 있다.</li>
-            <li>추천하려는 aptamer의 길이가 n이라고 하면 4^n개의 aptamer 서열이 후보가 된다. 만들려는 aptamer 가 길어질수록 후보군이 너무 많아 지기 때문에 프로그램의 계산 시간이 exponential하게 증가할 수 있다.</li>
+            <li>단백질-aptamer 결합과 aptamer-protein에 관한 배경지식이 부족하기 때문에 올바른 classifier의 학습이 어려울 수 있다.</li>
+            <li>추천하려는 aptamer의 길이가 n이라고 하면 4^n개의 aptamer 서열이 후보가 된다. 만들려는 aptamer 가 길어질수록
+                후보군이 너무 많아 지기 때문에 프로그램의 계산 시간이 exponential하게 증가할 수 있다.</li>
+            <li>웹 서비스 개발에 있어 Aptamer 서열을 추천할 때 제공하는 서열의 길이를 웹 서버에 부하가 가지 않을 정도의 선에서
+                최대의 길이로 결정하도록 하였다.</li>
+            <li>‘추가적인 데이터가 없기 때문에 완성된 추천 시스템에 대한 실제적인 정확도를 판별하는 것이 쉽지 않다’ 를
+                제약사항에 추가하였다.</li>
         </ul>
+        <br>
         <h4>대책</h4>
         <ul>
             <li>관련 논문 등을 참고하여 배경지식을 확보한다.</li>

@@ -7,10 +7,7 @@ Recommend Aptamer
 {% block content %}
 <h2>Recommend Aptamer Seq</h2>
 <h3></h3>
-<form method="post" enctype="multipart/form-data" novalidate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
-</form>
+<a id="id_upload_file" href="{ uploadFileModle.file.url }" download>
+    { uploadFileModel.file.name }</a>
 {% endblock %}
 
