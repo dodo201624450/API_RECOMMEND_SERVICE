@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['127.0.0.1', 'recommend_aptamer.com']
 # Application definition
 
 INSTALLED_APPS = [
+    'rest_framework',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -41,6 +43,8 @@ INSTALLED_APPS = [
     'aptamer',
     'explain'
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -127,5 +131,6 @@ STATICFILES_DIR = [
     os.path.join(BASE_DIR, "/home/static")
 ]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static', 'media')

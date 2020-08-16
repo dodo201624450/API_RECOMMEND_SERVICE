@@ -1,13 +1,11 @@
 from django import forms
+from .models import Aptamer
 
-from .models import UploadFileModel
+class UploadFileForm(forms.Form):
+    name = forms.CharField(max_length=15)
+    files = forms.FileField()
 
-
-class UploadFileForm(forms.ModelForm):
+class ApatemrForm(forms.ModelForm):
     class Meta:
-        model = UploadFileModel
-        fields = ('title', 'file')
-
-    def __init__(self, *args, **kwargs):
-        super(PostForm, self).__init__(*args, **kwargs)
-        self.fields['file'].required = False
+        model = Aptamer
+        fields = ('f_object',)

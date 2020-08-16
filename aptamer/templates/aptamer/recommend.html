@@ -5,12 +5,13 @@ Recommend Aptamer
 {% endblock %}
 
 {% block content %}
-<h2>Recommend Aptamer Seq</h2>
-<h3></h3>
-<form method="post" enctype="multipart/form-data" novalidate>
+<h2>Upload</h2>
+<form method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Upload</button>
+    <input type="file" name="document">
+    <button type="submit">Upload file</button>
 </form>
+{% if url %}
+    <p>Uploaded file: <a href="{{ url }}">{{ url }}</a></p>
+{% endif %}
 {% endblock %}
-

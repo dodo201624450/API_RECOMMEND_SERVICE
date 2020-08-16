@@ -5,9 +5,34 @@ Recommend Aptamer
 {% endblock %}
 
 {% block content %}
-<h2>Recommend Aptamer Seq</h2>
-<h3></h3>
-<a id="id_upload_file" href="{ uploadFileModle.file.url }" download>
-    { uploadFileModel.file.name }</a>
+<h2>Recommending...</h2>
+<p>
+    <a href="{% url 'aptamer:upload' %}" class="btn btn-primary">Upload File</a>
+</p>
+<table class="table mb-0">
+    <thead>
+        <tr>
+            <th>File</th>
+            <th>Recommend File</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for file in aptamer %}
+        <tr>
+            <td>
+                <a href="{{ file.f_object.url }}">
+                {{ file.f_object }}
+                </a>
+            </td>
+            <td>
+                <a href="{{ file.f_object.url }}" class="btn btn-primary btn-sm">
+                Download Recommend
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+
+</table>
 {% endblock %}
 

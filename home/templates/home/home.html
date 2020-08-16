@@ -6,7 +6,21 @@ Recommend Aptamer
 
 {% block content %}
 <div class="container">
-    <h1>Main Page!</h1>
+    <h1>신약개발 후보물질 추천을 위한 머신러닝 기법 설계</h1>
+    <ul class="home_menu">
+        <li>
+            <a href="{% url 'explain:project' %}">Project <span class="sr-only">(current)</span></a>
+        </li>
+        <li>
+            <a href="{% url 'explain:team' %}">Team</a>
+        </li>
+        <li>
+            <a href="{% url 'aptamer:upload' %}">Recommend</a>
+        </li>
+        <li>
+            <a href="#">Etc</a>
+        </li>
+    </ul>
 </div>
 {% endblock %}
 

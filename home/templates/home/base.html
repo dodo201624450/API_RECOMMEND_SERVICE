@@ -2,16 +2,22 @@
 {% load static %}
 <link href="{% static 'style.css' %}" rel="stylesheet">
 <script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
-<html lang="en">
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+</style>
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css?after"
           integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway:100,200,600,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>{% block title %}title of base html{% endblock %}</title>
 </head>
-<body>
+<body style="font-family:Nanum Gothic;">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="{% url 'home:index' %}" style="font-size:18px; font-weight:bold">
             <img src="{% static 'home/images/ARS_LOGO.png' %}"></a>
@@ -28,7 +34,7 @@
             <a class="nav-link" href="{% url 'explain:team' %}">Team</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'aptamer:index' %}">Recommend</a>
+            <a class="nav-link" href="{% url 'aptamer:upload' %}">Recommend</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Etc</a>

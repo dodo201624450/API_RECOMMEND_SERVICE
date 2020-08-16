@@ -1,22 +1,37 @@
-from django.shortcuts import render
-from django.views import generic
-from django.template.loader import get_template
-from .forms import UploadFileForm
+from django.shortcuts import render, redirect
+from django.core.files.storage import FileSystemStorage
+
+from .forms import ApatemrForm
+from .models import Aptamer
 
 
-class IndexView(generic.DetailView):
-    template_name = 'aptamer/recommend.html'
+def upload(request):
+    context = {}
+    if request.method == 'POST':
+        upload_file = request.FILES['document']
+        fs = FileSystemStorage()
+        name = fs.save(upload_file.name, upload_file)
+        context['url'] = fs.url(name)
 
-    def get(self, request, *args, **kwargs):
-        ctx = {}  # 템플릿에 전달할 데이터
-        return self.render_to_response(ctx)
+    return render(request, 'aptamer/recommend.html', context)
 
-    def upload_File(request):
-        if request.method == 'POST':
-            form = UploadFileForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-                return HttpResponseRedirect("{% url aptamer:success %}")
-        else:
-            form = UploadFileForm()
-        return render(request, 'upload.html', {'form': form})
+
+def file_list(request):
+    aptamer = Aptamer.objects.all()
+    return render(request, 'aptamer/recommend_success.html', {
+        'aptamer':aptamer
+    })
+
+
+def upload_file(request):
+    if request.method == 'POST':
+        form = ApatemrForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+
+            return redirect('aptamer:success')
+    else:
+        form = ApatemrForm()
+    return render(request, 'aptamer/recommend_upload.html', {
+        'form': form
+    })

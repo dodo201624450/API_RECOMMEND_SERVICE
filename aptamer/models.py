@@ -1,8 +1,10 @@
 from django.db import models
 
-
 # Create your models here.
 
-class UploadFileModel(models.Model):
-    title = models.TextField(default='')
-    file = models.FileField(null=True)
+class Aptamer(models.Model):
+    f_name = models.CharField(max_length=100)
+    f_object = models.FileField()
+
+    def __str__(self):
+        return self.f_name
