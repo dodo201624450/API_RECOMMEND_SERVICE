@@ -5,12 +5,14 @@ html, body {
     height: 100%;
 }
 
-ul.home_menu li {
-    list-style: none;
-    padding: 5px 0px 5px 5px;
-    margin-bottom: 5px;
-    border-bottom: 1px solid #efefef;
+.home_pic {
+    text-align: center;
+}
+
+.home_menu {
+    color: black;
     font-size: 20px;
+    text-align: center;
 }
 
 #footer {
