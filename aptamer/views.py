@@ -1,8 +1,12 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 
-from .forms import ApatemrForm
+from .forms import ApatmerForm
 from .models import Aptamer
+
+from feature_processing import preprocess_and_savez_protein
+from hyperparams import *
+from recommend_test import recommend
 
 
 def upload(request):
@@ -25,13 +29,17 @@ def file_list(request):
 
 def upload_file(request):
     if request.method == 'POST':
-        form = ApatemrForm(request.POST, request.FILES)
+        form = ApatmerForm(request.POST)
         if form.is_valid():
-            form.save()
-
+            aptamer = form.save(commit=False)
+            preprocess_and_savez_protein(aptamer.protein)
+            recommend()
+            aptamer.recommend = PAIRS_PATH["RECOMMEND"]
+            aptamer.recommend_file = PAIRS_PATH["result"]
+            aptamer.save()
             return redirect('aptamer:success')
     else:
-        form = ApatemrForm()
+        form = ApatmerForm()
     return render(request, 'aptamer/recommend_upload.html', {
         'form': form
     })

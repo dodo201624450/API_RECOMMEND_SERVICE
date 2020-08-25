@@ -24,6 +24,7 @@ SECRET_KEY = '4d_8#tc*0$@j2t02fsyuc)_3wx+fpz%xio%!k)@l9(!j1ij=tc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+#DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'recommend_aptamer.com']
 
@@ -133,4 +134,4 @@ STATICFILES_DIR = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-MEDIA_URL = '/media/'
+MEDIA_URL = '/'

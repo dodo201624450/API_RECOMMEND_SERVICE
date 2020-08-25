@@ -12,20 +12,24 @@ Recommend Aptamer
 <table class="table mb-0">
     <thead>
         <tr>
-            <th>File</th>
+            <th>Protein</th>
             <th>Recommend File</th>
+            <th>etc</th>
         </tr>
     </thead>
     <tbody>
     {% for file in aptamer %}
         <tr>
             <td>
-                <a href="{{ file.f_object.url }}">
-                {{ file.f_object }}
+                {{ file.protein }}
+            </td>
+            <td>
+                <a href="{{ file.recommend }}" class="btn btn-primary btn-sm">
+                Download Recommend
                 </a>
             </td>
             <td>
-                <a href="{{ file.f_object.url }}" class="btn btn-primary btn-sm">
+                <a href="{{ file.recommend_file.url }}" class="btn btn-primary btn-sm">
                 Download Recommend
                 </a>
             </td>

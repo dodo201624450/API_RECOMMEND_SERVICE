@@ -5,7 +5,7 @@ class UploadFileForm(forms.Form):
     name = forms.CharField(max_length=15)
     files = forms.FileField()
 
-class ApatemrForm(forms.ModelForm):
+class ApatmerForm(forms.ModelForm):
     class Meta:
         model = Aptamer
-        fields = ('f_object',)
+        fields = ('protein',)

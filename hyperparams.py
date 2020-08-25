@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+MEDIA = "media/"
 BASE_PATH = "data/"
 SEQ_PATH = BASE_PATH + "sequence/"
 STR_PATH = BASE_PATH + "structure/"
@@ -66,7 +67,20 @@ NPZ_PATH = {
 }
 
 PAIRS_PATH = {
-    "recommend" : BASE_PATH + "recommend.csv",
+    "RECOMMEND" : MEDIA + BASE_PATH + "RECOMMEND.csv",
+    "result" : BASE_PATH + "RECOMMEND.csv",
+    "recommend" : {
+        1 :  MEDIA + BASE_PATH + "recommend1.csv",
+        2 :  MEDIA + BASE_PATH + "recommend2.csv",
+        3 :  MEDIA + BASE_PATH + "recommend3.csv",
+        4 :  MEDIA + BASE_PATH + "recommend4.csv",
+        5 :  MEDIA + BASE_PATH + "recommend5.csv",
+        6 :  MEDIA + BASE_PATH + "recommend6.csv",
+        7 :  MEDIA + BASE_PATH + "recommend7.csv",
+        8 :  MEDIA + BASE_PATH + "recommend8.csv",
+        9 :  MEDIA + BASE_PATH + "recommend9.csv",
+        10 :  MEDIA + BASE_PATH + "recommend10.csv",
+    },
     "NPInter" : BASE_PATH + "NPInter_pairs.txt",
     "RPI" : {
         1807 : BASE_PATH + "RPI1807_pairs.txt",

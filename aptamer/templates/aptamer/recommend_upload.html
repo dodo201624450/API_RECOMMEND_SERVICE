@@ -7,7 +7,7 @@ Recommend Aptamer
 {% endblock %}
 
 {% block content %}
-<h2>Upload File</h2>
+<h2>Enter Protein</h2>
 <p>다음의 조건을 만족하는 Aptamer가 출력됩니다.</p>
 <ul>
     <li>이차원 구조에서 연속하는 3 결합쌍을 생성함</li>
@@ -17,10 +17,10 @@ Recommend Aptamer
 </ul>
 <p>warning: 다음과 같은 형식을 지켜주세요.</p>
 
-<form method="post" enctype="multipart/form-data">
+<form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Upload File</button>
+    <button type="submit" class="btn btn-primary">Enter</button>
 </form>
 {% endblock %}
 

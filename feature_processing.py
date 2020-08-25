@@ -253,7 +253,7 @@ def preprocess_and_savez_randAPI(label):
     XA = preprocess_feature_APT(X, NPZ_PATH["rand"][label])
 
 def preprocess_and_savez_protein():
-    protein = "QELLCAASLISDRWVLTAAHCLLYPPWDKNFTVNDILVRIGKYARSRYERNMEKISTLEKIIIHPGYNWRENLDRDIALMKLKKPVAFSDYIHPVCLPDKQIVTSLLQAGHKGRVTGWGNLKEMWTVNMNEVQPSVLQMVNLPLVERPICKASTGIRVTDNMFCAGYKPEEGKRGDACEGDSGGPFVMKNPYNNRWYQMGIVSWGEGCDRDGKYGFYTHVFRLKKWIRKMVDRFG"
+    protein = "QELLCAASLISDRWVLTAAQELLCAASLISDRWVLTAAHCLLYPPWDKNFTVNDILVRIGKYARSRYERNMEKISTLEKIIIHPGYNWRENLDRDIALMKLKKPVAFSDYIHPVCLPDKQIVTSLLQAGHKGRVTGWGNLKEMWTVNMNEVQPSVLQMVNLPLVERPICKASTGIRVTDNMFCAGYKPEEGKRGDACEGDSGGPFVMKNPYNNRWYQMGIVSWGEGCDRDGKYGFYTHVFRLKKWIRKMVDRFGEKIIIHPGYNWRENLDRDIALMKLKKPVAFSDYIHPVCLPDKQIVTSLLQAGHKGRVTGWGNLKEMWTVNMNEVQPSVLQMVNLPLVERPICKASTGIRVTDNMFCAGYKPEEGKRGDACEGDSGGPFVMKNPYNNRWYQMGIVSWGEGCDRDGKYGFYTHVFRLKKWIRKMVDRFG"
     X = []
     for i in range(100000):
         X.append(protein)
@@ -265,14 +265,14 @@ def preprocess_and_savez_genAPI(label):
 
 def preprocess_and_savez_protein(protein):
     X = []
-    for i in range(100000):
+    for i in range(10000):
         X.append(protein)
     XP = preprocess_feature_protein(X, NPZ_PATH["protein"])
 
 if __name__ == "__main__":
     print("Feature Preprocessing")
-
-    """preprocess_and_savez_NPInter()
+    """
+    preprocess_and_savez_NPInter()
     preprocess_and_savez_RPI(1807)
     preprocess_and_savez_RPI(2241)
     preprocess_and_savez_RPI(369)
@@ -284,7 +284,8 @@ if __name__ == "__main__":
 
     for i in range(10):
         preprocess_and_savez_randAPI(i)
-    """
+
     preprocess_and_savez_protein()
     for i in range(20,21):
         preprocess_and_savez_genAPI(i)
+    """

@@ -1,20 +1,25 @@
 import pickle
 from hyperparams import *
-from random_APT import *
+
 import numpy as np
 import pandas as pd
+from feature_processing import preprocess_and_savez_protein
+from pymongo import MongoClient
+import gridfs
 
+my_client = MongoClient("mongodb://localhost:27017/")
+fs = gridfs.GridFS(my_client)
 
-def check(pdA: object, rand_apt) -> object:
+def check(pdA: object, rand_apt, i) -> object:
     rst = np.where(pdA == 1)
     apt_list = ""
     X = []
 
+    f = open(PAIRS_PATH["recommend"][i], 'w')
+    print(i)
     for i in rst:
         temp = rand_apt[i-1]
         apt_list = ""
-
-        f = open(PAIRS_PATH["recommend"], 'w')
 
         for j in temp:
             tmp = np.array_str(j)
@@ -23,19 +28,20 @@ def check(pdA: object, rand_apt) -> object:
             apt = apt.translate({ord(i): None for i in ']'})
             apt = apt.translate({ord(i): None for i in '\''})
             X.append(apt)
-            f.write(str(j) + ',' + apt + '\n')
+            f.write(apt + '\n')
         f.close()
+
 
     return X
 
 def recommend():
     RFC_A = pickle.load(open(PIC_PATH["mix_randomForests"], 'rb'))
-    positive = -2
+    positive = 0
 
     for i in range(10):
-        Train_A = np.load(NPZ_PATH["genetic"][i+10])
+        Train_A = np.load(NPZ_PATH["genetic"][i])
         Train_P = np.load(NPZ_PATH["protein"])
-        rand_apt = pd.read_csv(PAIRS_PATH["genetic"][i+10])
+        rand_apt = pd.read_csv(PAIRS_PATH["genetic"][i])
         rand_apt_arr = rand_apt.to_numpy()
 
         X_A = Train_A['XA']
@@ -45,12 +51,18 @@ def recommend():
 
         pdA = RFC_A.predict(Train)
 
-        X = check(pdA, rand_apt_arr)
+        X = check(pdA, rand_apt_arr, i+1)
         print(X)
         positive += len(X)
         #print("A {}".format(pdA))
 
     print(positive)
+
+    f = open(PAIRS_PATH["RECOMMEND"], 'w')
+    for num in range(1, 11):
+        for line in open(PAIRS_PATH["recommend"][num]):
+            f.write(line)
+    f.close()
 
     return X
 """"
@@ -75,4 +87,7 @@ for j in range(100):
 """
 
 if __name__ == '__main__':
-    recommend()
+    #x = input('protein: ')
+    #preprocess_and_savez_protein(x)
+    #recommend()
+    print(my_client.list_database_names())
