@@ -6,7 +6,7 @@ from .models import Aptamer
 
 from feature_processing import preprocess_and_savez_protein
 from hyperparams import *
-from recommend_test import recommend
+from recommend_test import recommend100
 
 
 def upload(request):
@@ -28,12 +28,13 @@ def file_list(request):
 
 
 def upload_file(request):
+    imsi = []
     if request.method == 'POST':
         form = ApatmerForm(request.POST)
         if form.is_valid():
             aptamer = form.save(commit=False)
             preprocess_and_savez_protein(aptamer.protein)
-            recommend()
+            recommend100(imsi)
             aptamer.recommend = PAIRS_PATH["RECOMMEND"]
             aptamer.recommend_file = PAIRS_PATH["result"]
             aptamer.save()

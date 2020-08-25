@@ -1,93 +1,76 @@
+import RNA
 import pickle
 from hyperparams import *
-
 import numpy as np
-import pandas as pd
-from feature_processing import preprocess_and_savez_protein
-from pymongo import MongoClient
-import gridfs
-
-my_client = MongoClient("mongodb://localhost:27017/")
-fs = gridfs.GridFS(my_client)
-
-def check(pdA: object, rand_apt, i) -> object:
-    rst = np.where(pdA == 1)
-    apt_list = ""
-    X = []
-
-    f = open(PAIRS_PATH["recommend"][i], 'w')
-    print(i)
-    for i in rst:
-        temp = rand_apt[i-1]
-        apt_list = ""
-
-        for j in temp:
-            tmp = np.array_str(j)
-            tmp = tmp.split(" ")
-            apt = ''.join(tmp[1])
-            apt = apt.translate({ord(i): None for i in ']'})
-            apt = apt.translate({ord(i): None for i in '\''})
-            X.append(apt)
-            f.write(apt + '\n')
-        f.close()
+import random
 
 
-    return X
+imsi = []
+last = []
+def getResult():
 
-def recommend():
     RFC_A = pickle.load(open(PIC_PATH["mix_randomForests"], 'rb'))
     positive = 0
+    Results = []
 
-    for i in range(10):
+    for i in range(10,19):
+        #Results = []
         Train_A = np.load(NPZ_PATH["genetic"][i])
         Train_P = np.load(NPZ_PATH["protein"])
-        rand_apt = pd.read_csv(PAIRS_PATH["genetic"][i])
-        rand_apt_arr = rand_apt.to_numpy()
 
         X_A = Train_A['XA']
         X_P = Train_P['XP']
 
         Train = np.concatenate((X_P, X_A), axis=-1)
-
         pdA = RFC_A.predict(Train)
 
-        X = check(pdA, rand_apt_arr, i+1)
-        print(X)
-        positive += len(X)
-        #print("A {}".format(pdA))
+        pair_path = PAIRS_PATH["genetic"][i]
+        f = open(pair_path, 'r')
+        lines = f.readlines()
+        for j in range(100000):
+            if pdA[j]==1 :
+                target_data = lines[j].split(",")[1]
+                Result = target_data[:-1]
+                Results.append(Result)
+                positive += 1
+        f.close()
 
-    print(positive)
+    print(Results)
+    #print(Results[0])
+
+    print("positive: " + str(positive))
+    return Results
+
+def recommend100(imsi):
+    genetic_apt_arr = getResult()
+    print("len: " + str(len(genetic_apt_arr)))
+    scores = np.zeros(len(genetic_apt_arr))
+
+    test=[]
+    for i in range(100):
+        insert_num = random.randint(0, len(genetic_apt_arr) - 1)
+        while insert_num in test:
+            insert_num = random.randint(0, len(genetic_apt_arr) - 1)
+        test.append(insert_num)
+        imsi.append(genetic_apt_arr[insert_num])
 
     f = open(PAIRS_PATH["RECOMMEND"], 'w')
-    for num in range(1, 11):
-        for line in open(PAIRS_PATH["recommend"][num]):
-            f.write(line)
+
+    for i in range(100):
+        f.write(last[i] + '\n')
+        print("Rank " + str(i) + " : " + str(last[i]))
+
     f.close()
 
-    return X
-""""
-for i in range(10):
-    Train_A = np.load(NPZ_PATH["rand"][i])
-    Train_P = np.load(NPZ_PATH["protein"])
 
-    X_A = Train_A['XA']
-    X_P = Train_P['XP']
+if __name__ == "__main__":
+    """my_client = MongoClient("mongodb://localhost:27017/")
+    mydb = my_client['mydatabase']
+    mycol = mydb["aptamers"]
 
-    Train = np.concatenate((X_P, X_A), axis=-1)
-
-    pdA = RFC_A.predict(Train)
-
-    print("A {}".format(pdA))
-for j in range(100):
-    for i in range(100):
-        print(str(pdA[j*100+1]), end=' ')
-    print(" ")
-
-
-"""
-
-if __name__ == '__main__':
-    #x = input('protein: ')
-    #preprocess_and_savez_protein(x)
-    #recommend()
-    print(my_client.list_database_names())
+    print(mydb.list_collection_names())
+    dblist = my_client.list_database_names()
+    if "mydatabase" in dblist:
+        print("The datatbase exists")
+    """
+    recommend100(imsi)

@@ -265,7 +265,7 @@ def preprocess_and_savez_genAPI(label):
 
 def preprocess_and_savez_protein(protein):
     X = []
-    for i in range(10000):
+    for i in range(100000):
         X.append(protein)
     XP = preprocess_feature_protein(X, NPZ_PATH["protein"])
 
@@ -289,3 +289,5 @@ if __name__ == "__main__":
     for i in range(20,21):
         preprocess_and_savez_genAPI(i)
     """
+
+    preprocess_and_savez_protein()
