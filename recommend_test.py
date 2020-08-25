@@ -64,13 +64,4 @@ def recommend100(imsi):
 
 
 if __name__ == "__main__":
-    """my_client = MongoClient("mongodb://localhost:27017/")
-    mydb = my_client['mydatabase']
-    mycol = mydb["aptamers"]
-
-    print(mydb.list_collection_names())
-    dblist = my_client.list_database_names()
-    if "mydatabase" in dblist:
-        print("The datatbase exists")
-    """
     recommend100(imsi)
