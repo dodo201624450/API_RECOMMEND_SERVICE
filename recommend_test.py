@@ -45,16 +45,28 @@ def recommend100(imsi):
 
     test=[]
 
-    for i in range(100):
-        insert_num = random.randint(0, len(genetic_apt_arr) - 1)
-        while insert_num in test:
+    if len(genetic_apt_arr)==0:
+        print("length is 0")
+
+    elif len(genetic_apt_arr)<100:
+        for i in range(len(genetic_apt_arr)):
             insert_num = random.randint(0, len(genetic_apt_arr) - 1)
-        test.append(insert_num)
-        imsi.append(genetic_apt_arr[insert_num])
+            while insert_num in test:
+                insert_num = random.randint(0, len(genetic_apt_arr) - 1)
+            test.append((insert_num))
+            imsi.append(genetic_apt_arr[insert_num])
+
+    else:
+        for i in range(100):
+            insert_num = random.randint(0, len(genetic_apt_arr) - 1)
+            while insert_num in test:
+                insert_num = random.randint(0, len(genetic_apt_arr) - 1)
+            test.append(insert_num)
+            imsi.append(genetic_apt_arr[insert_num])
 
     f = open(PAIRS_PATH["RECOMMEND"], 'w')
 
-    for i in range(100):
+    for i in range(len(imsi)):
         f.write(imsi[i] + '\n')
         print("Rank " + str(i) + " : " + str(imsi[i]))
 
