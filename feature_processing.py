@@ -237,6 +237,7 @@ def preprocess_feature_protein(x, npz_path):
 
     return x_protein
 
+"""
 def preprocess_and_savez_NPInter():
     X, Y = read_NPInter_pairSeq()
     XP, XR, Y = preprocess_feature(X, Y, NPZ_PATH["NPInter"])
@@ -262,11 +263,11 @@ def preprocess_and_savez_protein():
 def preprocess_and_savez_genAPI(label):
     X = read_genAPI_pairSeq(label)
     XA = preprocess_feature_APT(X, NPZ_PATH["genetic"][label])
+"""
 
 def preprocess_and_savez_protein(protein):
     X = []
-    for i in range(100000):
-        X.append(protein)
+    X.append(protein)
     XP = preprocess_feature_protein(X, NPZ_PATH["protein"])
 
 if __name__ == "__main__":

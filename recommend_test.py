@@ -11,7 +11,7 @@ def getResult():
     positive = 0
     Results = []
 
-    for i in range(10,15):
+    for i in range(10,20):
         print("stage: " + str(i), end=' ')
         Train_A = np.load(NPZ_PATH["genetic"][i])
         Train_P = np.load(NPZ_PATH["protein"])
@@ -44,7 +44,8 @@ def recommend100(imsi):
     print("len: " + str(len(genetic_apt_arr)))
 
     test=[]
-    for i in range(10):
+
+    for i in range(100):
         insert_num = random.randint(0, len(genetic_apt_arr) - 1)
         while insert_num in test:
             insert_num = random.randint(0, len(genetic_apt_arr) - 1)
@@ -53,7 +54,7 @@ def recommend100(imsi):
 
     f = open(PAIRS_PATH["RECOMMEND"], 'w')
 
-    for i in range(10):
+    for i in range(100):
         f.write(imsi[i] + '\n')
         print("Rank " + str(i) + " : " + str(imsi[i]))
 
