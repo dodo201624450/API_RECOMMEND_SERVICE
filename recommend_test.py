@@ -11,7 +11,7 @@ def getResult():
     positive = 0
     Results = []
 
-    for i in range(10,20):
+    for i in range(10,30):
         print("stage: " + str(i), end=' ')
         Train_A = np.load(NPZ_PATH["genetic"][i])
         Train_P = np.load(NPZ_PATH["protein"])

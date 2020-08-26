@@ -4,7 +4,7 @@ from django.db import models
 
 
 class Aptamer(models.Model):
-    protein = models.CharField(max_length=1000)
+    protein = models.CharField(max_length=2000)
     recommend = models.CharField(max_length=5000)
     recommend_file = models.FileField()
 
