@@ -1,4 +1,3 @@
-import RNA
 import pickle
 from hyperparams import *
 import numpy as np
@@ -6,15 +5,14 @@ import random
 
 
 imsi = []
-last = []
 def getResult():
 
     RFC_A = pickle.load(open(PIC_PATH["mix_randomForests"], 'rb'))
     positive = 0
     Results = []
 
-    for i in range(10,19):
-        #Results = []
+    for i in range(10,15):
+        print("stage: " + str(i), end=' ')
         Train_A = np.load(NPZ_PATH["genetic"][i])
         Train_P = np.load(NPZ_PATH["protein"])
 
@@ -34,9 +32,9 @@ def getResult():
                 Results.append(Result)
                 positive += 1
         f.close()
+        print(" ...end")
 
     print(Results)
-    #print(Results[0])
 
     print("positive: " + str(positive))
     return Results
@@ -44,10 +42,9 @@ def getResult():
 def recommend100(imsi):
     genetic_apt_arr = getResult()
     print("len: " + str(len(genetic_apt_arr)))
-    scores = np.zeros(len(genetic_apt_arr))
 
     test=[]
-    for i in range(100):
+    for i in range(10):
         insert_num = random.randint(0, len(genetic_apt_arr) - 1)
         while insert_num in test:
             insert_num = random.randint(0, len(genetic_apt_arr) - 1)
@@ -56,9 +53,9 @@ def recommend100(imsi):
 
     f = open(PAIRS_PATH["RECOMMEND"], 'w')
 
-    for i in range(100):
-        f.write(last[i] + '\n')
-        print("Rank " + str(i) + " : " + str(last[i]))
+    for i in range(10):
+        f.write(imsi[i] + '\n')
+        print("Rank " + str(i) + " : " + str(imsi[i]))
 
     f.close()
 
