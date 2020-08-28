@@ -9,3 +9,6 @@ class ApatmerForm(forms.ModelForm):
     class Meta:
         model = Aptamer
         fields = ('protein',)
+
+class ProteinForm(forms.Form):
+    protein = forms.CharField(max_length=2000)

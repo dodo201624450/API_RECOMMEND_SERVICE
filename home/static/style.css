@@ -5,14 +5,22 @@ html, body {
     height: 100%;
 }
 
+.home_logo {
+    text-align: center;
+    color: #a0decf;
+}
+
 .home_pic {
     text-align: center;
 }
 
-.home_menu {
-    color: black;
-    font-size: 20px;
+.menu {
     text-align: center;
+}
+
+.home_menu {
+    color: #2c3a2c;
+    font-size: 20px;
 }
 
 #footer {

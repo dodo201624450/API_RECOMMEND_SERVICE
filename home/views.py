@@ -10,3 +10,11 @@ class IndexView(generic.DetailView):
         ctx = {}  # 템플릿에 전달할 데이터
         return self.render_to_response(ctx)
 
+
+class Index2View(generic.DetailView):
+    template_name = 'home/home2.html'
+
+    def get(self, request, *args, **kwargs):
+        ctx = {}  # 템플릿에 전달할 데이터
+        return self.render_to_response(ctx)
+

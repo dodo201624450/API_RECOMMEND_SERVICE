@@ -1,4 +1,4 @@
-{% extends 'home/base.html' %}
+{% extends 'home/home.html' %}
 
 {% load crispy_forms_tags %}
 
@@ -8,14 +8,7 @@ Recommend Aptamer
 
 {% block content %}
 <h2>Enter Protein</h2>
-<p>다음의 조건을 만족하는 Aptamer가 출력됩니다.</p>
-<ul>
-    <li>이차원 구조에서 연속하는 3 결합쌍을 생성함</li>
-    <li>free 에너지가 -5.7보다 작음</li>
-    <li>unparied base가 11개 이상 존재함</li>
-    <li>같은 배열에서 생성할 수 있는 이차원 구조의 경우의 수가 150 미만으로 존재함</li>
-</ul>
-<p>warning: 다음과 같은 형식을 지켜주세요.</p>
+<p>입력가능한 최대 길이는 1000입니다.</p>
 
 <form method="post">
     {% csrf_token %}
