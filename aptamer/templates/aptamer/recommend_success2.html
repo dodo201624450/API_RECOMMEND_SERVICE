@@ -1,0 +1,20 @@
+{% extends 'home/home.html' %}
+
+{% block title %}
+Recommend Aptamer
+{% endblock %}
+
+{% block content %}
+<h2>Recommend Success</h2>
+<p>
+    <a href="{% url 'aptamer:upload' %}" class="btn btn-primary">Upload File</a>
+</p>
+{% if protein %}
+<p>{{ protein }}</p>
+<a href="{{ recommend_file.url }}" class="btn btn-primary btn-sm">
+    Download Recommend
+</a>
+
+{% endif %}
+{% endblock %}
+

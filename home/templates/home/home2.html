@@ -1,0 +1,48 @@
+<!DOCYTPE html>
+{% load static %}
+<link href="{% static 'style.css' %}" rel="stylesheet">
+<script src="{% static 'js/jquery-3.5.0.min.js' %}"></script>
+<style>
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothic.css);
+.wrapper{
+    padding: 30px;
+    background-image: url('/static/ex/images/RNA4.jpg');
+}
+.container{
+    padding: 30px;
+    font-size: 50px;
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+</style>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css?after"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway:100,200,600,700" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>HOME</title>
+</head>
+</html>
+<body style="font-family:Nanum Gothic;">
+<div class="wrapper">
+    <div class = "container">
+        <div class="home_logo">
+        <h1>ARS</h1>
+        <h5>Aptamer Recommend Service</h5>
+        </div>
+        <div class="menu">
+        <div class="btn-group" role="group" aria-label="Basic example" style="text-align: center;">
+            <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'explain:project' %}'">Project</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'explain:team' %}'">Team</button>
+            <button type="button" class="btn btn-secondary" onclick="location.href='{% url 'aptamer:upload' %}'">Recommend</button>
+        </div>
+        </div>
+    </div>
+</div>
+</body>

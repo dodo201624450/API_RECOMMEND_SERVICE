@@ -1,0 +1,29 @@
+{% extends 'home/home.html' %}
+{% load cache %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Recommend Aptamer
+{% endblock %}
+
+{% block content %}
+<h2>Enter Protein</h2>
+<p>입력가능한 최대 길이는 1000입니다.</p>
+<p>시간이 최대 5분정도 소요될 수 있습니다.</p>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+    <button type="submit" class="btn btn-primary">Enter</button>
+</form>
+{% cache 500 protein %}
+<p>protein: {{ protein }}</p>
+{% if protein %}
+<a href="{{ recommendFile }}" class="btn btn-primary btn-sm">
+    Download Recommend
+</a>
+{% endif %}
+{% endcache %}
+
+{% endblock %}
+
