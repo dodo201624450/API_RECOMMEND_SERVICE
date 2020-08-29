@@ -21,7 +21,7 @@ ROOT_DIR = os.path.dirname(BASE_DIR)
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environn.get('DJANGO_SECRET_KEY','4d_8#tc*0$@j2t02fsyuc)_3wx+fpz%xio%!k)@l9(!j1ij=tc')
+SECRET_KEY = '4d_8#tc*0$@j2t02fsyuc)_3wx+fpz%xio%!k)@l9(!j1ij=tc'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 #DEBUG = True
@@ -33,10 +33,7 @@ ALLOWED_HOSTS = ['127.0.0.1', '.ars.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'rest_framework',
     'crispy_forms',
-    'django_celery_results',
-    'celery_progress',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -51,8 +48,6 @@ INSTALLED_APPS = [
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
-    'whitenoise.middleware.WhiteNoiseMiddleware',
-    'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -87,28 +82,12 @@ WSGI_APPLICATION = 'LetsGraduate.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'djangogirls',
-        'USER': 'name',
-        'PASSWORD': '',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
-CACHES = {
-    'default':{
-        'BACKEND': 'django_redis.cache.RedisCache',
-        'LOCATION': 'redis://127.0.0.1:6379/1',
-        'OPTIONS': {
-            'CLIENT_CLASS': 'django_redis.client.DefaultClient',
-        }
-    }
-}
-
-BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhoost:6379/0'
-
+DEBUG = True
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
@@ -156,15 +135,3 @@ STATICFILES_DIR = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 MEDIA_URL = '/'
-
-CELERY_BROKER_URL = 'redis://h:p1f32b9a309b588283093e94d3a85d08e7263b9bb79572b25bd9ffcd6cec2f980@ec2-50-16-55-44.compute-1.amazonaws.com:23589'
-
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_BACKEND = 'django-db'
-
-# settings.py
-# Heroku: Update database configuration from $DATABASE_URL.
-import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500)
-DATABASES['default'].update(db_from_env)
