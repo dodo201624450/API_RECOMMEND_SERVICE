@@ -1,7 +1,7 @@
 {% extends 'home/home.html' %}
 
 {% block title %}
-Recommend Aptamer
+Recommend Success
 {% endblock %}
 
 {% block content %}
@@ -9,10 +9,24 @@ Recommend Aptamer
 <p>
     <a href="{% url 'aptamer:upload' %}" class="btn btn-primary">Upload File</a>
 </p>
-{% if aptamer %}
-<p>{{ aptamer.protein }}</p>
-<a href="{{ aptamer.recommend_file.url }}" class="btn btn-primary btn-sm">
-    Download Recommend
-</a>
+<div class="download">
+    <p>{{ aptamer.protein }}</p>
+    <a href="{{ aptamer.recommend_file.url }}" class="btn btn-primary btn-sm">
+        Download Recommend
+    </a>
+</div>
+<br>
+<div class="table-responsive">
+    <table class="table">
+        <th>th</th>
+        <th>recommend</th>
+        {% for r,i in e %}
+        <tr>
+            <td>{{ r }}</td>
+            <td>{{ i }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
 {% endblock %}
 

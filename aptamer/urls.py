@@ -1,11 +1,10 @@
 from django.urls import path
-from django.conf.urls import include, url
-from django.contrib import admin
 
 from. import views
 
 app_name = 'aptamer'
 
 urlpatterns = [
-    path('recommend/upload2', views.upload_file2, name='upload'),
+    path('recommend/success', views.file_list, name='success'),
+    path('recommend/upload', views.upload_file, name='upload'),
 ]

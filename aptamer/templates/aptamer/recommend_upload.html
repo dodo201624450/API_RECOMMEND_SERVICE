@@ -1,19 +1,79 @@
 {% extends 'home/home.html' %}
 
+{% load static %}
+
 {% load crispy_forms_tags %}
 
 {% block title %}
 Recommend Aptamer
 {% endblock %}
 
+<style>
+    #loading {
+
+	width: 100%;
+
+	height: 100%;
+
+	top: 0;
+
+	left: 0;
+
+	position: fixed;
+
+	display: block;
+
+	opacity: 0.8;
+
+	background: white;
+
+	z-index: 99;
+
+	text-align: center;
+
+}
+
+
+
+#loading > img {
+
+	position: absolute;
+
+	top: 50%;
+
+	left: 50%;
+
+	z-index: 100;
+
+}
+</style>
+
 {% block content %}
 <h2>Enter Protein</h2>
 <p>입력가능한 최대 길이는 1000입니다.</p>
 
+
 <form method="post">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit" class="btn btn-primary">Enter</button>
+    <button type="submit" class="btn btn-primary" id="show">Enter</button>
 </form>
+
+<div id="loading">
+    <img src="{% static 'aptamer/images/loading.gif' %}" alt="loading">
+</div>
+
+<script>
+
+$(document).ready(function() {
+    $("#loading").hide();
+    $("#show").click(function(){
+        $("#loading").show();
+        return true;
+    });
+});
+
+</script>
 {% endblock %}
+
 
