@@ -18,13 +18,13 @@ def file_list(request):
     f = open("media/data/RECOMMEND.csv", 'r')
     rdr = csv.reader(f)
     for i in rdr:
-        imsi.append(i)
-    print(imsi)
+        join = (''.join(i))
+        result = re.sub('[\']', '', join)
+        imsi.append(result)
     nums = []
     for x in range(1, len(imsi)+1):
         x = str(x)
         nums.append(x)
-    print(nums)
     e = enumerate(imsi, start=1)
     return render(request, 'aptamer/recommend_success.html', {
         'aptamer': aptamer,
