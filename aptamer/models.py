@@ -8,6 +8,8 @@ class Aptamer(models.Model):
     recommend_file = models.FileField()
     all_file = models.FileField()
     number_of_recommended = models.IntegerField()
+    number_of_all = models.IntegerField()
+    number_of_actual = models.IntegerField()
 
     def __str__(self):
         return self.protein

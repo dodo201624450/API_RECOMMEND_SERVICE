@@ -40,7 +40,7 @@ def upload_file(request):
             aptamer = form.save(commit=False)
             protein = aptamer.protein
             preprocess_and_savez_protein(protein)
-            recommend100(imsi, (int)(aptamer.number_of_recommended))
+            aptamer.number_of_actual, aptamer.number_of_all = recommend100(imsi, (int)(aptamer.number_of_recommended))
             aptamer.recommend_file = PAIRS_PATH["result"]
             aptamer.all_file = PAIRS_PATH["all"]
             aptamer.save()

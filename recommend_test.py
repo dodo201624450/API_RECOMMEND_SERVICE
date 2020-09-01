@@ -79,6 +79,8 @@ def recommend100(imsi, num):
 
     f.close()
 
+    return len(imsi),len(genetic_apt_arr)
+
 
 if __name__ == "__main__":
     recommend100(imsi)

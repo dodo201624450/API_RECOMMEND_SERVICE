@@ -12,8 +12,13 @@ Recommend Success
 <div class="download">
     <p>Target Protein: </p>
     <p>{{ aptamer.protein }}</p>
+    <p>
+        Total number of aptamer: {{ aptamer.number_of_all }}
+        <br>
+        Number of recommended: {{ aptamer.number_of_actual }}
+    </p>
     <a href="{{ aptamer.recommend_file.url }}" class="btn btn-primary btn-sm">
-        Download {{ aptamer.number_of_recommended }} Recommendations
+        Download {{ aptamer.number_of_actual }} Recommendations
     </a>
     <a href="{{ aptamer.all_file.url }}" class="btn btn-primary btn-sm">
         Download All Recommendations
