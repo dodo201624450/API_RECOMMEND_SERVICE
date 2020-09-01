@@ -68,7 +68,9 @@ NPZ_PATH = {
 
 PAIRS_PATH = {
     "RECOMMEND" : MEDIA + BASE_PATH + "RECOMMEND.csv",
+    "ALL" : MEDIA + BASE_PATH + "ALL.csv",
     "result" : BASE_PATH + "RECOMMEND.csv",
+    "all" : BASE_PATH + "ALL.csv",
     "recommend" : {
         1 :  MEDIA + BASE_PATH + "recommend1.csv",
         2 :  MEDIA + BASE_PATH + "recommend2.csv",
